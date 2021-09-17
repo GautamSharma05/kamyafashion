@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kamyafashion/Screens/HosieryScreen.dart';
 import 'package:kamyafashion/Screens/KidsScreen.dart';
 import 'package:kamyafashion/Screens/MensScreen.dart';
 import 'package:kamyafashion/Screens/WomenScreen.dart';
-import 'package:kamyafashion/Widgets/CustomCarousel.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,13 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
-      initialIndex: 1,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           leading: Padding(
             padding: const EdgeInsets.all(14.0),
             child: CircleAvatar(
+              backgroundColor: Color(0xFFf16c83),
               radius: 30.0,
               backgroundImage: NetworkImage(
                   'https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg'),
@@ -39,12 +38,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: 'Women',
               ),
               Tab(text: 'Kids'),
-              Tab(
-                text: 'Hosiery',
-              )
+
             ],
           ),
-          title: Text('Kamya Fashion'),
+          title: Text(
+            'Kamya Fashion',
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -52,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {}, icon: Icon(Icons.shopping_bag_outlined)),
             )
           ],
-          elevation: 20.0,
+          elevation: 15.0,
         ),
         body: SafeArea(
           child: TabBarView(
@@ -60,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               MensScreen(),
               WomenScreen(),
               KidsScreen(),
-              HosieryScreen()
+
             ],
           ),
         ),
