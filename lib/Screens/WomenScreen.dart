@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'AllProductScreen.dart';
+import 'DisplayFullProduct.dart';
 
 class WomenScreen extends StatefulWidget {
   const WomenScreen({Key? key}) : super(key: key);
@@ -96,7 +97,18 @@ class _WomenScreenState extends State<WomenScreen> {
                                 shrinkWrap: true,
                                 children: snapshot.data!.docs
                                     .map(
-                                      (e) => Image.network(e['ProductPicUrl']),
+                                      (e) =>GestureDetector(onTap:(){
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DisplayFullProduct(
+                                                        doc: 'Kurtis',
+                                                        id: 'KurtisProduct',
+                                                        gender: 'Women',
+                                                        pId:
+                                                        e['ProductId'])));
+                                      },child: Image.network(e['ProductPicUrl'])),
                                 )
                                     .toList()
                             ),
@@ -172,7 +184,18 @@ class _WomenScreenState extends State<WomenScreen> {
                                 shrinkWrap: true,
                                 children: snapshot.data!.docs
                                     .map(
-                                      (e) => Image.network(e['ProductPicUrl']),
+                                      (e) => GestureDetector(onTap:(){
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DisplayFullProduct(
+                                                        doc: 'Bra',
+                                                        id: 'BraProduct',
+                                                        gender: 'Women',
+                                                        pId:
+                                                        e['ProductId'])));
+                                      },child: Image.network(e['ProductPicUrl'])),
                                 )
                                     .toList()),
                           );
@@ -256,7 +279,18 @@ class _WomenScreenState extends State<WomenScreen> {
                                 shrinkWrap: true,
                                 children: snapshot.data!.docs
                                     .map(
-                                      (e) => Image.network(e['ProductPicUrl']),
+                                      (e) => GestureDetector(onTap:(){
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DisplayFullProduct(
+                                                        doc: 'Bra',
+                                                        id: 'BraProduct',
+                                                        gender: 'Women',
+                                                        pId:
+                                                        e['ProductId'])));
+                                      },child: Image.network(e['ProductPicUrl'])),
                                 )
                                     .toList()),
                           );

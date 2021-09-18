@@ -28,6 +28,9 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
         .collection(id)
         .doc(pId);
     return Scaffold(
+      appBar: AppBar(
+
+      ),
       body: Column(
         children: [
           FutureBuilder(
@@ -43,7 +46,6 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-
               })
         ],
       ),
@@ -52,6 +54,37 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
 
   Widget displayProduct(context, snapshot) {
     final product = snapshot.data!;
-    return Image.network(product['ProductPicUrl']);
+    return Column(
+
+      children: [
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            color: Colors.white,
+              width: double.infinity,
+              height: 460,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                Center(child: Image.network(product['ProductPicUrl'],height: 350,)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(product['ProductName'],style: TextStyle(fontSize: 14,color: Colors.grey[500],fontWeight: FontWeight.w600),),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(product['ProductSellingPrice'],style: TextStyle(fontSize:24,fontWeight: FontWeight.w600),)
+                ],
+                ),
+              ),
+          ),
+        )
+
+      ],
+    );
   }
 }

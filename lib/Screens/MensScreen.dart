@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kamyafashion/Screens/AllProductScreen.dart';
 
+import 'DisplayFullProduct.dart';
+
 class MensScreen extends StatefulWidget {
   const MensScreen({Key? key}) : super(key: key);
 
@@ -63,8 +65,14 @@ class _MensScreenState extends State<MensScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => AllProductScreen(doc:'Tshirt',id:'TshirtProduct',gender: 'Men')));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AllProductScreen(
+                                      doc: 'Tshirt',
+                                      id: 'TshirtProduct',
+                                      gender: 'Men')));
                         },
                         child: Text(
                           'See All',
@@ -102,10 +110,23 @@ class _MensScreenState extends State<MensScreen> {
                               shrinkWrap: true,
                               children: snapshot.data!.docs
                                   .map(
-                                    (e) => Image.network(e['ProductPicUrl']),
+                                    (e) => GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DisplayFullProduct(
+                                                          doc: 'Tshirt',
+                                                          id: 'TshirtProduct',
+                                                          gender: 'Men',
+                                                          pId:
+                                                              e['ProductId'])));
+                                        },
+                                        child:
+                                            Image.network(e['ProductPicUrl'])),
                                   )
-                                  .toList()
-                          ),
+                                  .toList()),
                         );
                       }
                       return Center(
@@ -139,8 +160,14 @@ class _MensScreenState extends State<MensScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> AllProductScreen(doc:'Shirt',id: 'ShirtProduct',gender: 'Men')));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AllProductScreen(
+                                      doc: 'Shirt',
+                                      id: 'ShirtProduct',
+                                      gender: 'Men')));
                         },
                         child: Text(
                           'See All',
@@ -178,7 +205,21 @@ class _MensScreenState extends State<MensScreen> {
                               shrinkWrap: true,
                               children: snapshot.data!.docs
                                   .map(
-                                    (e) => Image.network(e['ProductPicUrl']),
+                                    (e) => GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DisplayFullProduct(
+                                                          doc: 'Shirt',
+                                                          id: 'ShirtProduct',
+                                                          gender: 'Men',
+                                                          pId:
+                                                              e['ProductId'])));
+                                        },
+                                        child:
+                                            Image.network(e['ProductPicUrl'])),
                                   )
                                   .toList()),
                         );
@@ -223,8 +264,14 @@ class _MensScreenState extends State<MensScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> AllProductScreen(doc:'Lower',id: 'LowerProduct',gender: 'Men')));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AllProductScreen(
+                                      doc: 'Lower',
+                                      id: 'LowerProduct',
+                                      gender: 'Men')));
                         },
                         child: Text(
                           'See All',
@@ -262,8 +309,22 @@ class _MensScreenState extends State<MensScreen> {
                               shrinkWrap: true,
                               children: snapshot.data!.docs
                                   .map(
-                                    (e) => Image.network(e['ProductPicUrl']),
-                              )
+                                    (e) => GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DisplayFullProduct(
+                                                          doc: 'Lower',
+                                                          id: 'LowerProduct',
+                                                          gender: 'Men',
+                                                          pId:
+                                                              e['ProductId'])));
+                                        },
+                                        child:
+                                            Image.network(e['ProductPicUrl'])),
+                                  )
                                   .toList()),
                         );
                       }
