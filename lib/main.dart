@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Kamya Fashion',
         theme: ThemeData(
-          primaryColor: Color(0xFFf16c83),
+
+          appBarTheme: AppBarTheme(
+            backgroundColor:Color(0xFFf16c83)
+          ) ,
           fontFamily: GoogleFonts.poppins().fontFamily,
           scaffoldBackgroundColor: Colors.grey[200],
         ),

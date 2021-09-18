@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kamyafashion/Screens/AllProductScreen.dart';
 
 class MensScreen extends StatefulWidget {
   const MensScreen({Key? key}) : super(key: key);
@@ -22,6 +23,12 @@ class _MensScreenState extends State<MensScreen> {
       .collection('subtype')
       .doc('Shirt')
       .collection('ShirtProduct');
+  CollectionReference lowerProduct = FirebaseFirestore.instance
+      .collection('Products')
+      .doc('Men')
+      .collection('subtype')
+      .doc('Lower')
+      .collection('LowerProduct');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,18 +62,23 @@ class _MensScreenState extends State<MensScreen> {
                           fontSize: 24,
                         ),
                       ),
-                      Text(
-                        'See All',
-                        style: TextStyle(
-                          color: Color(0xFFf16c83),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => AllProductScreen(doc:'Tshirt',id:'TshirtProduct',gender: 'Men')));
+                        },
+                        child: Text(
+                          'See All',
+                          style: TextStyle(
+                            color: Color(0xFFf16c83),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       )
                     ],
                   ),
                   StreamBuilder(
-                    stream: tProduct.snapshots(),
+                    stream: tProduct.limit(4).snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasError) {
@@ -92,7 +104,8 @@ class _MensScreenState extends State<MensScreen> {
                                   .map(
                                     (e) => Image.network(e['ProductPicUrl']),
                                   )
-                                  .toList()),
+                                  .toList()
+                          ),
                         );
                       }
                       return Center(
@@ -125,18 +138,23 @@ class _MensScreenState extends State<MensScreen> {
                           fontSize: 24,
                         ),
                       ),
-                      Text(
-                        'See All',
-                        style: TextStyle(
-                          color: Color(0xFFf16c83),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> AllProductScreen(doc:'Shirt',id: 'ShirtProduct',gender: 'Men')));
+                        },
+                        child: Text(
+                          'See All',
+                          style: TextStyle(
+                            color: Color(0xFFf16c83),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       )
                     ],
                   ),
                   StreamBuilder(
-                    stream: sProduct.snapshots(),
+                    stream: sProduct.limit(4).snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasError) {
@@ -185,6 +203,78 @@ class _MensScreenState extends State<MensScreen> {
                   'https://hotdealszone.com/wp-content/uploads/2018/10/flipkart-axis-cards-offer.png')),
           SizedBox(
             height: 20,
+          ),
+          Container(
+            color: Colors.white,
+            width: double.infinity,
+            height: 390,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Men's Lower",
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> AllProductScreen(doc:'Lower',id: 'LowerProduct',gender: 'Men')));
+                        },
+                        child: Text(
+                          'See All',
+                          style: TextStyle(
+                            color: Color(0xFFf16c83),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  StreamBuilder(
+                    stream: lowerProduct.limit(4).snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Something went wrong');
+                      }
+
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (snapshot.hasData) {
+                        return Expanded(
+                          child: GridView.count(
+                              physics: NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.all(8.0),
+                              crossAxisSpacing: 10.0,
+                              mainAxisSpacing: 20.0,
+                              crossAxisCount: 2,
+                              childAspectRatio: 2.5 / 2,
+                              shrinkWrap: true,
+                              children: snapshot.data!.docs
+                                  .map(
+                                    (e) => Image.network(e['ProductPicUrl']),
+                              )
+                                  .toList()),
+                        );
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
