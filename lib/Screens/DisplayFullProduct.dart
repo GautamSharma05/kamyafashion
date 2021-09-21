@@ -50,8 +50,11 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                     return displayProduct(context, snapshot);
                   }
 
-                  return Center(
-                    child: CircularProgressIndicator(),
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height / 1.3,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   );
                 })
           ],
@@ -80,7 +83,8 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                           primary: Color(0xFFf16c83)),
                       icon: Icon(Icons.shopping_bag_outlined),
                       label: Text('Add to Cart')),
-                )
+                ),
+
               ],
             ),
           ],
@@ -92,7 +96,7 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
   Widget displayProduct(context, snapshot) {
     final product = snapshot.data!;
     var size = snapshot.data!.get('ProductSize');
-   
+
     return Column(
       children: [
         Padding(
@@ -100,7 +104,6 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
           child: Container(
             color: Colors.white,
             width: double.infinity,
-            height: 470,
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Column(
@@ -131,17 +134,23 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                   SizedBox(
                     height: 5,
                   ),
-                  Container(
-                    width: 85,
-                    height: 20,
-                    child: Text(
-                      'Free Delivery',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 11.0, color: Colors.grey[700]),
+
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Free Delivery',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 11.0, color: Colors.grey[700]),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
                     ),
-                    decoration: BoxDecoration(
-                        color: Colors.grey[100],
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
                   ),
                 ],
               ),
@@ -152,7 +161,6 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             width: double.infinity,
-            height: 100,
             color: Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,30 +175,27 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                 SizedBox(
                   height: 5,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (var i in size)
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 65,
-                            height: 30,
-                            child: Text(
-                              i.toString(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 16.0, color: Colors.grey[700]),
-                            ),
-                            decoration: BoxDecoration(
-                                border: Border.all(),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
+                Wrap(
+                  children: [
+                    for (var i in size)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 65,
+                          height: 30,
+                          child: Text(
+                            i.toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 16.0, color: Colors.grey[700]),
                           ),
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
                         ),
-                    ],
-                  ),
+                      ),
+                  ],
                 ),
               ],
             ),
@@ -200,7 +205,6 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             width: double.infinity,
-            height: 200,
             color: Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,6 +216,11 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                      product['ProductDescription'].replaceAll("\\n", "\n")),
+                )
               ],
             ),
           ),
