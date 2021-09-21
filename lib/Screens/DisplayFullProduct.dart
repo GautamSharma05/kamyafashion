@@ -29,61 +29,193 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
         .doc(pId);
     return Scaffold(
       appBar: AppBar(
-
-      ),
-      body: Column(
-        children: [
-          FutureBuilder(
-              future: productsDetail.get(),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Text("Something went wrong");
-                }
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return displayProduct(context, snapshot);
-                }
-
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              })
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+                onPressed: () {}, icon: Icon(Icons.shopping_bag_outlined)),
+          )
         ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            FutureBuilder(
+                future: productsDetail.get(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Text("Something went wrong");
+                  }
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return displayProduct(context, snapshot);
+                  }
+
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                })
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        width: double.infinity,
+        height: 75,
+        color: Colors.white,
+        child: Column(
+          children: [
+            Divider(
+              height: 10,
+              thickness: 5.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton.icon(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: Size(200, 45),
+                          primary: Color(0xFFf16c83)),
+                      icon: Icon(Icons.shopping_bag_outlined),
+                      label: Text('Add to Cart')),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget displayProduct(context, snapshot) {
     final product = snapshot.data!;
+    var size = snapshot.data!.get('ProductSize');
+   
     return Column(
-
       children: [
-
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
             color: Colors.white,
-              width: double.infinity,
-              height: 460,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            width: double.infinity,
+            height: 470,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                Center(child: Image.network(product['ProductPicUrl'],height: 350,)),
+                  Center(
+                      child: Image.network(
+                    product['ProductPicUrl'],
+                    height: 350,
+                  )),
                   SizedBox(
                     height: 20,
                   ),
-                  Text(product['ProductName'],style: TextStyle(fontSize: 14,color: Colors.grey[500],fontWeight: FontWeight.w600),),
+                  Text(
+                    product['ProductName'],
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[500],
+                        fontWeight: FontWeight.w600),
+                  ),
                   SizedBox(
                     height: 8,
                   ),
-                  Text(product['ProductSellingPrice'],style: TextStyle(fontSize:24,fontWeight: FontWeight.w600),)
+                  Text(
+                    product['ProductSellingPrice'],
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    width: 85,
+                    height: 20,
+                    child: Text(
+                      'Free Delivery',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 11.0, color: Colors.grey[700]),
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                  ),
                 ],
-                ),
               ),
+            ),
           ),
-        )
-
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: double.infinity,
+            height: 100,
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Select Size',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      for (var i in size)
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: 65,
+                            height: 30,
+                            child: Text(
+                              i.toString(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.grey[700]),
+                            ),
+                            decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: double.infinity,
+            height: 200,
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Product Details',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
