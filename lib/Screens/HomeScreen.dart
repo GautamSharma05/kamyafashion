@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kamyafashion/Screens/CartScreen.dart';
 import 'package:kamyafashion/Screens/KidsScreen.dart';
 import 'package:kamyafashion/Screens/MensScreen.dart';
 import 'package:kamyafashion/Screens/WomenScreen.dart';
@@ -51,7 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
-                  onPressed: () {}, icon: Icon(Icons.shopping_bag_outlined)),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+                  }, icon: Icon(Icons.shopping_bag_outlined)),
             )
           ],
           elevation: 15.0,

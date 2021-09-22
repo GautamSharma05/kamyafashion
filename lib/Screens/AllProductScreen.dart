@@ -69,7 +69,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0,top: 4.0),
-                              child: Text(e['ProductSellingPrice'],style: TextStyle(
+                              child: Text('₹ '+e['ProductSellingPrice'],style: TextStyle(
                                   fontWeight: FontWeight.bold
                               ),),
                             ),
