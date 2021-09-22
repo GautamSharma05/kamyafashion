@@ -157,19 +157,25 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                     for (var i in size)
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 65,
-                          height: 30,
-                          child: Text(
-                            i.toString(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 16.0, color: Colors.grey[700]),
+                        child: GestureDetector(
+                          onTap: (){
+                            final String selectedSize = i;
+                            print(selectedSize);
+                          },
+                          child: Container(
+                            width: 65,
+                            height: 30,
+                            child: Text(
+                              i.toString(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.grey[700]),
+                            ),
+                            decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
                           ),
-                          decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
                         ),
                       ),
                   ],
@@ -262,6 +268,7 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                                               fontSize: 16.0,
                                               color: Colors.grey[700]),
                                         ),
+
                                         decoration: BoxDecoration(
                                             border: Border.all(),
                                             borderRadius: BorderRadius.all(
@@ -275,18 +282,7 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                                 thickness: 1,
                               ),
                               QuantityCart(price: price),
-                              Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Color(0xFFf16c83),
-                                    minimumSize: Size(double.infinity, 45),
-                                  ),
-                                  child: Text('Continue'),
-                                ),
-                              )
+
                             ],
                           ),
                         ),
