@@ -275,6 +275,18 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                                 thickness: 1,
                               ),
                               QuantityCart(price: price),
+                              Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xFFf16c83),
+                                    minimumSize: Size(double.infinity, 45),
+                                  ),
+                                  child: Text('Continue'),
+                                ),
+                              )
                             ],
                           ),
                         ),
