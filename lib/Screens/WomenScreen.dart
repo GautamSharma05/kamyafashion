@@ -86,6 +86,7 @@ class _WomenScreenState extends State<WomenScreen> {
                           );
                         }
                         if (snapshot.hasData) {
+
                           return Expanded(
                             child: GridView.count(
                                 physics: NeverScrollableScrollPhysics(),
@@ -108,7 +109,7 @@ class _WomenScreenState extends State<WomenScreen> {
                                                         gender: 'Women',
                                                         pId:
                                                         e['ProductId'])));
-                                      },child: Image.network(e['ProductPicUrl'])),
+                                      },child: Image.network(e['ProductPicUrl'][0])),
                                 )
                                     .toList()
                             ),
@@ -195,7 +196,7 @@ class _WomenScreenState extends State<WomenScreen> {
                                                         gender: 'Women',
                                                         pId:
                                                         e['ProductId'])));
-                                      },child: Image.network(e['ProductPicUrl'])),
+                                      },child: Image.network(e['ProductPicUrl'][0])),
                                 )
                                     .toList()),
                           );
@@ -290,7 +291,7 @@ class _WomenScreenState extends State<WomenScreen> {
                                                         gender: 'Women',
                                                         pId:
                                                         e['ProductId'])));
-                                      },child: Image.network(e['ProductPicUrl'])),
+                                      },child: Image.network(e['ProductPicUrl'][0])),
                                 )
                                     .toList()),
                           );

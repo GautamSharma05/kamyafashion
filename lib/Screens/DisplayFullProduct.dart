@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kamyafashion/Screens/CartScreen.dart';
@@ -74,7 +75,7 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
     final product = snapshot.data!;
     var size = snapshot.data!.get('ProductSize');
     int price = int.parse(product['ProductSellingPrice']);
-
+    List<dynamic> urlImages = snapshot.data!.get('ProductPicUrl');
     return Column(
       children: [
         Padding(
@@ -87,11 +88,25 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                      child: Image.network(
-                    product['ProductPicUrl'],
-                    height: 350,
-                  )),
+                  CarouselSlider.builder(
+                      itemCount: urlImages.length,
+                      itemBuilder: (context, index, realIndex) {
+                        final urlImage = urlImages[index];
+                        return buildImage(urlImage);
+                      },
+                      options: CarouselOptions(
+                          height: 300.0,
+                          aspectRatio: 16 / 9,
+                          enableInfiniteScroll: true,
+                          viewportFraction: 1.3,
+                          autoPlay: true,
+                          /*onPageChanged: (index, reason) {
+                              setState(() {
+                                activeIndex = index;
+                              });
+                            },*/
+                          autoPlayCurve: Curves.easeInOut,
+                          enlargeCenterPage: true)),
                   SizedBox(
                     height: 20,
                   ),
@@ -158,7 +173,7 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             final String selectedSize = i;
                             print(selectedSize);
                           },
@@ -268,7 +283,6 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                                               fontSize: 16.0,
                                               color: Colors.grey[700]),
                                         ),
-
                                         decoration: BoxDecoration(
                                             border: Border.all(),
                                             borderRadius: BorderRadius.all(
@@ -282,7 +296,6 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                                 thickness: 1,
                               ),
                               QuantityCart(price: price),
-
                             ],
                           ),
                         ),
@@ -311,5 +324,14 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
         ),
       ],
     );
+  }
+
+  Widget buildImage(urlImage) {
+    return  Center(
+        child: Image.network(
+          urlImage,
+          fit: BoxFit.fill
+
+        ));
   }
 }

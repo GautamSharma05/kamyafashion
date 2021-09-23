@@ -123,7 +123,7 @@ class _MensScreenState extends State<MensScreen> {
                                                               e['ProductId'])));
                                         },
                                         child:
-                                            Image.network(e['ProductPicUrl'])),
+                                            Image.network(e['ProductPicUrl'][0])),
                                   )
                                   .toList()),
                         );
@@ -218,7 +218,7 @@ class _MensScreenState extends State<MensScreen> {
                                                               e['ProductId'])));
                                         },
                                         child:
-                                            Image.network(e['ProductPicUrl'])),
+                                            Image.network(e['ProductPicUrl'][0])),
                                   )
                                   .toList()),
                         );
@@ -322,7 +322,7 @@ class _MensScreenState extends State<MensScreen> {
                                                               e['ProductId'])));
                                         },
                                         child:
-                                            Image.network(e['ProductPicUrl'])),
+                                            Image.network(e['ProductPicUrl'][0])),
                                   )
                                   .toList()),
                         );
