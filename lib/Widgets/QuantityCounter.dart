@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kamyafashion/Screens/CartScreen.dart';
 
 class QuantityCart extends StatefulWidget {
   final int price;
@@ -40,8 +41,8 @@ class _QuantityCartState extends State<QuantityCart> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Select Quantity',
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600)),
                   ],
                 ),
               ),
@@ -85,8 +86,12 @@ class _QuantityCartState extends State<QuantityCart> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Total Price',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                Text('₹ '+(qty * price).toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                Text(
+                  '₹ ' + (qty * price).toString(),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                )
               ],
             ),
           ),
@@ -98,7 +103,10 @@ class _QuantityCartState extends State<QuantityCart> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CartScreen()));
+              },
               style: ElevatedButton.styleFrom(
                 primary: Color(0xFFf16c83),
                 minimumSize: Size(double.infinity, 45),

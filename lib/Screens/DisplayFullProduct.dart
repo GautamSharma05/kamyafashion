@@ -72,6 +72,7 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
   }
 
   Widget displayProduct(context, snapshot) {
+    var _isSelected = false;
     final product = snapshot.data!;
     var size = snapshot.data!.get('ProductSize');
     int price = int.parse(product['ProductSellingPrice']);
@@ -179,15 +180,27 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                           },
                           child: Container(
                             width: 65,
-                            height: 30,
-                            child: Text(
-                              i.toString(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 16.0, color: Colors.grey[700]),
+                            height: 45,
+                            child: ChoiceChip(
+                              label: Text(i.toString().toUpperCase()),
+                              labelStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold),
+                              selected: _isSelected,
+                              backgroundColor:
+                                  Colors.grey[600]!.withOpacity(0.7),
+                              selectedColor: Color(0xFF0000FF),
+                              disabledColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              onSelected: (isSelected) {
+                                setState(() {
+                                  _isSelected = !isSelected;
+                                });
+                              },
                             ),
                             decoration: BoxDecoration(
-                                border: Border.all(),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20))),
                           ),
@@ -273,20 +286,25 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
                                   for (var i in size)
                                     Padding(
                                       padding: const EdgeInsets.all(16.0),
-                                      child: Container(
-                                        width: 65,
-                                        height: 30,
-                                        child: Text(
-                                          i.toString(),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              color: Colors.grey[700]),
-                                        ),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(20))),
+                                      child: ChoiceChip(
+                                        label: Text(i.toString().toUpperCase()),
+                                        labelStyle: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold),
+                                        selected: _isSelected,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0)),
+                                        backgroundColor:
+                                            Colors.grey[600]!.withOpacity(0.7),
+                                        selectedColor: Color(0xFF0000FF),
+                                        disabledColor: Colors.black,
+                                        onSelected: (isSelected) {
+                                          setState(() {
+                                            _isSelected = isSelected;
+                                          });
+                                        },
                                       ),
                                     ),
                                 ],
@@ -327,11 +345,10 @@ class _DisplayFullProductState extends State<DisplayFullProduct> {
   }
 
   Widget buildImage(urlImage) {
-    return  Center(
-        child: Image.network(
-          urlImage,
-          fit: BoxFit.fill
-
-        ));
+    return Center(
+        child: FadeInImage.assetNetwork(
+            placeholder: 'assets/images/loading.gif',
+            image: urlImage,
+            fit: BoxFit.fill));
   }
 }

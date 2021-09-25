@@ -36,6 +36,7 @@ dependencies:
   firebase_auth:
   country_code_picker:
   carousel_slider:
+  smooth_page_indicator:
   modal_bottom_sheet:
 
 

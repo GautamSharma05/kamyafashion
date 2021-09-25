@@ -49,13 +49,18 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
-                  }, icon: Icon(Icons.shopping_bag_outlined)),
-            )
+            IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+                }, icon: Icon(Icons.search)),
+            IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+                }, icon: Icon(Icons.favorite_border)),
+            IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+                }, icon: Icon(Icons.shopping_bag_outlined)),
           ],
           elevation: 15.0,
         ),
