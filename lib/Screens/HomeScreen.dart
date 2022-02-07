@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kamyafashion/Screens/CartScreen.dart';
 import 'package:kamyafashion/Screens/KidsScreen.dart';
 import 'package:kamyafashion/Screens/MensScreen.dart';
 import 'package:kamyafashion/Screens/WomenScreen.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -39,7 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: 'Women',
               ),
               Tab(text: 'Kids'),
-
             ],
           ),
           title: Text(
@@ -52,15 +49,18 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
-                }, icon: Icon(Icons.search)),
+                },
+                icon: Icon(Icons.search)),
             IconButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
-                }, icon: Icon(Icons.favorite_border)),
+                },
+                icon: Icon(Icons.favorite_border)),
             IconButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
-                }, icon: Icon(Icons.shopping_bag_outlined)),
+                },
+                icon: Icon(Icons.shopping_bag_outlined)),
           ],
           elevation: 15.0,
         ),
@@ -70,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
               MensScreen(),
               WomenScreen(),
               KidsScreen(),
-
             ],
           ),
         ),

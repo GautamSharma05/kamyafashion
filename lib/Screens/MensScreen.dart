@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:kamyafashion/Screens/AllProductScreen.dart';
 import 'package:kamyafashion/Widgets/MenCarousel.dart';
@@ -83,35 +83,40 @@ class _MensScreenState extends State<MensScreen> {
                             padding: const EdgeInsets.all(16.0),
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/images/loading.gif',
-                              image: 'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/25/a88b9390-5adb-493b-a1b3-702c59ccf53a1598348260502-Nike.jpg',
+                              image:
+                                  'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/25/a88b9390-5adb-493b-a1b3-702c59ccf53a1598348260502-Nike.jpg',
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/images/loading.gif',
-                              image: 'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/25/c9f66558-feab-4d76-aa3c-adc68d81dce21598348260415-Levis.jpg',
+                              image:
+                                  'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/25/c9f66558-feab-4d76-aa3c-adc68d81dce21598348260415-Levis.jpg',
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/images/loading.gif',
-                              image: 'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/5/178c1e5d-69f2-402f-a2a5-ef44700a0f691596640983793-Roadster---.jpg',
+                              image:
+                                  'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/5/178c1e5d-69f2-402f-a2a5-ef44700a0f691596640983793-Roadster---.jpg',
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/images/loading.gif',
-                              image: 'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/25/085719b1-c71e-4f47-950c-9a6b7f291fac1598348260370-Jack-_-Jones.jpg',
+                              image:
+                                  'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/25/085719b1-c71e-4f47-950c-9a6b7f291fac1598348260370-Jack-_-Jones.jpg',
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/images/loading.gif',
-                              image: 'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/5/774f42c4-f459-4514-9b90-cf8a60a5f68c1596644478087-hrx30.jpg',
+                              image:
+                                  'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2020/8/5/774f42c4-f459-4514-9b90-cf8a60a5f68c1596644478087-hrx30.jpg',
                             ),
                           ),
                         ],
@@ -149,9 +154,7 @@ class _MensScreenState extends State<MensScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AllProductScreen(
-                                      doc: 'Shirt',
-                                      id: 'ShirtProduct',
-                                      gender: 'Men')));
+                                      doc: 'Shirt', id: 'ShirtProduct', gender: 'Men')));
                         },
                         child: Text(
                           'See All',
@@ -166,8 +169,7 @@ class _MensScreenState extends State<MensScreen> {
                   ),
                   StreamBuilder(
                     stream: sProduct.limit(4).snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasError) {
                         return Text('Something went wrong');
                       }
@@ -194,16 +196,14 @@ class _MensScreenState extends State<MensScreen> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DisplayFullProduct(
-                                                        doc: 'Shirt',
-                                                        id: 'ShirtProduct',
-                                                        gender: 'Men',
-                                                        pId: e['ProductId'])));
+                                                builder: (context) => DisplayFullProduct(
+                                                    doc: 'Shirt',
+                                                    id: 'ShirtProduct',
+                                                    gender: 'Men',
+                                                    pId: e['ProductId'])));
                                       },
                                       child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/images/loading.gif',
+                                        placeholder: 'assets/images/loading.gif',
                                         image: e['ProductPicUrl'][0],
                                       ),
                                     ),
@@ -256,9 +256,7 @@ class _MensScreenState extends State<MensScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AllProductScreen(
-                                      doc: 'Lower',
-                                      id: 'LowerProduct',
-                                      gender: 'Men')));
+                                      doc: 'Lower', id: 'LowerProduct', gender: 'Men')));
                         },
                         child: Text(
                           'See All',
@@ -273,8 +271,7 @@ class _MensScreenState extends State<MensScreen> {
                   ),
                   StreamBuilder(
                     stream: lowerProduct.limit(4).snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasError) {
                         return Text('Something went wrong');
                       }
@@ -301,16 +298,14 @@ class _MensScreenState extends State<MensScreen> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DisplayFullProduct(
-                                                        doc: 'Lower',
-                                                        id: 'LowerProduct',
-                                                        gender: 'Men',
-                                                        pId: e['ProductId'])));
+                                                builder: (context) => DisplayFullProduct(
+                                                    doc: 'Lower',
+                                                    id: 'LowerProduct',
+                                                    gender: 'Men',
+                                                    pId: e['ProductId'])));
                                       },
                                       child: FadeInImage.assetNetwork(
-                                          placeholder:
-                                              'assets/images/loading.gif',
+                                          placeholder: 'assets/images/loading.gif',
                                           image: e['ProductPicUrl'][0]),
                                     ),
                                   )
