@@ -17,13 +17,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Kamya Fashion',
         theme: ThemeData(
-
-          appBarTheme: AppBarTheme(
-            backgroundColor:Color(0xFFf16c83)
-          ) ,
+          appBarTheme: AppBarTheme(backgroundColor: Color(0xFFf16c83)),
           fontFamily: GoogleFonts.poppins().fontFamily,
           scaffoldBackgroundColor: Colors.grey[200],
         ),
-        home: Wrapper());
+        home: Wrapper()); //This Will Change My Screen To Home
   }
 }
