@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'DisplayFullProduct.dart';
 
 class AllProductScreen extends StatefulWidget {
+  //Variable Declaration
   final String id;
   final String doc;
   final String gender;
   AllProductScreen({required this.doc, required this.id, required this.gender});
 
   @override
-  _AllProductScreenState createState() =>
-      _AllProductScreenState(doc, id, gender);
+  _AllProductScreenState createState() => _AllProductScreenState(doc, id, gender);
 }
 
 class _AllProductScreenState extends State<AllProductScreen> {
@@ -32,8 +32,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
         ),
         body: StreamBuilder(
           stream: allProducts.snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               return Text('Something went wrong');
             }
@@ -57,10 +56,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => DisplayFullProduct(
-                                        doc: doc,
-                                        id: id,
-                                        gender: gender,
-                                        pId: e["ProductId"])));
+                                        doc: doc, id: id, gender: gender, pId: e["ProductId"])));
                           },
                           child: Container(
                             color: Colors.white,
@@ -70,35 +66,29 @@ class _AllProductScreenState extends State<AllProductScreen> {
                               children: [
                                 Center(
                                     child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/images/loading.gif',
+                                        placeholder: 'assets/images/loading.gif',
                                         image: e['ProductPicUrl'][0],
                                         height: 150)),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
                                     e['ProductName'],
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w500),
+                                    style: TextStyle(fontWeight: FontWeight.w500),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8.0, top: 4.0),
+                                  padding: const EdgeInsets.only(left: 8.0, top: 4.0),
                                   child: Text(
                                     '₹ ' + e['ProductSellingPrice'],
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8.0, top: 4.0),
+                                  padding: const EdgeInsets.only(left: 8.0, top: 4.0),
                                   child: Text(
                                     'Free Delivery',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: Color(0xFFf16c83)),
+                                        fontWeight: FontWeight.w500, color: Color(0xFFf16c83)),
                                   ),
                                 )
                               ],
