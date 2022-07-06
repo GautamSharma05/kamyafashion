@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:kamyafashion/Screens/GetStartedScreen.dart';
 import 'Screens/HomeScreen.dart';
 
-
 class Wrapper extends StatefulWidget {
   Wrapper({Key? key}) : super(key: key);
 
@@ -18,10 +17,8 @@ class _WrapperState extends State<Wrapper> {
     return AnimatedSplashScreen(
       backgroundColor: Colors.white,
       splash: 'assets/images/logo.png',
-      nextScreen: FirebaseAuth.instance.currentUser == null
-          ? GetStartedScreen()
-          : HomeScreen(),
+      nextScreen: FirebaseAuth.instance.currentUser == null ? GetStartedScreen() : HomeScreen(),
       splashTransition: SplashTransition.scaleTransition,
-    );
+    ); //This Widget Show AnimatedSpashScreen
   }
 }
